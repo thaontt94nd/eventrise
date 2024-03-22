@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <move file="C:\Users\ADMIN\EclipseWS2\MultiBrowser\target/MultiBrowser-apexconf.jar" tofile="C:\Users\ADMIN\EclipseWS2\MultiBrowser\target/MultiBrowser.apc"/>
+</target>
+</project>
