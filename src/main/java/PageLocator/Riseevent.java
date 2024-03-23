@@ -49,7 +49,7 @@ public class Riseevent extends CommonBase {
   //deleteeventsuccess
     public void deleteeventsuccess() {
     	
-    	click(By.xpath("//span[text()=' event4']/ancestor::td[@data-date='"+getCurrentDateTime1()+"']"));
+    	click(By.xpath("//span[text()=' event5']/ancestor::td[@data-date='"+getCurrentDateTime1()+"']"));
     	click(btndelete); 
     	click(btnY);
     }

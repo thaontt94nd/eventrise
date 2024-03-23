@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-03-23T09:00:14 ICT" name="Default suite" finished-at="2024-03-23T09:00:30 ICT" duration-ms="15892">
+    <groups>
+    </groups>
+    <test started-at="2024-03-23T09:00:14 ICT" name="Default test" finished-at="2024-03-23T09:00:30 ICT" duration-ms="15892">
+      <class name="testsuite.Testevent">
+        <test-method is-config="true" signature="initDriverTest()[pri:0, instance:testsuite.Testevent@d9345cd]" started-at="2024-03-23T09:00:14 ICT" name="initDriverTest" finished-at="2024-03-23T09:00:21 ICT" duration-ms="6385" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initDriverTest -->
+        <test-method signature="addeventsuccess()[pri:1, instance:testsuite.Testevent@d9345cd]" started-at="2024-03-23T09:00:21 ICT" name="addeventsuccess" finished-at="2024-03-23T09:00:28 ICT" duration-ms="7017" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addeventsuccess -->
+        <test-method signature="deleteeventsuccess()[pri:2, instance:testsuite.Testevent@d9345cd]" started-at="2024-03-23T09:00:28 ICT" name="deleteeventsuccess" finished-at="2024-03-23T09:00:30 ICT" duration-ms="1828" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteeventsuccess -->
+        <test-method signature="TextMonth()[pri:3, instance:testsuite.Testevent@d9345cd]" started-at="2024-03-23T09:00:30 ICT" name="TextMonth" finished-at="2024-03-23T09:00:30 ICT" duration-ms="153" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TextMonth -->
+        <test-method signature="Textweek()[pri:4, instance:testsuite.Testevent@d9345cd]" started-at="2024-03-23T09:00:30 ICT" name="Textweek" finished-at="2024-03-23T09:00:30 ICT" duration-ms="144" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Textweek -->
+        <test-method signature="Textday()[pri:5, instance:testsuite.Testevent@d9345cd]" started-at="2024-03-23T09:00:30 ICT" name="Textday" finished-at="2024-03-23T09:00:30 ICT" duration-ms="124" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Textday -->
+        <test-method is-config="true" signature="closechromeDriver()[pri:0, instance:testsuite.Testevent@d9345cd]" started-at="2024-03-23T09:00:30 ICT" name="closechromeDriver" finished-at="2024-03-23T09:00:30 ICT" duration-ms="185" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closechromeDriver -->
+      </class> <!-- testsuite.Testevent -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

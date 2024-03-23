@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite All]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Regression Test All class on firefox(failed)">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="testsuite.Checkbox">
+        <methods>
+          <include name="isRadioSelected"/>
+          <include name="initDriver"/>
+          <include name="isdropdownlistSelected"/>
+        </methods>
+      </class> <!-- testsuite.Checkbox -->
+    </classes>
+  </test> <!-- Regression Test All class on firefox(failed) -->
+  <test thread-count="5" name="Regression Test All class on edge(failed)">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="testsuite.Checkbox">
+        <methods>
+          <include name="isRadioSelected"/>
+          <include name="isSingleCheckboxSelected"/>
+          <include name="initDriver"/>
+          <include name="isdropdownlistSelected"/>
+        </methods>
+      </class> <!-- testsuite.Checkbox -->
+    </classes>
+  </test> <!-- Regression Test All class on edge(failed) -->
+</suite> <!-- Failed suite [Suite All] -->

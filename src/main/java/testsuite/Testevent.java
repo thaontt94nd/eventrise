@@ -34,7 +34,7 @@ public class Testevent extends CommonBase {
 		addeventsuce.login();
 		addeventsuce.menuevent();
 		addeventsuce.addeventsuccess("event5",getCurrentDateTime(),getCurrentDateTime());
-		AssertJUnit.assertTrue(isElementPresent(By.xpath("//span[text()=' event4']/ancestor::td[@data-date='"+getCurrentDateTime1()+"']" )));
+		AssertJUnit.assertTrue(isElementPresent(By.xpath("//span[text()=' event5']/ancestor::td[@data-date='"+getCurrentDateTime1()+"']" )));
 	}
 	@Test(priority=2)
 	public void deleteeventsuccess(){
