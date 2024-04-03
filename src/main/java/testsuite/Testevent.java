@@ -5,6 +5,7 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
 
+import java.text.Normalizer;
 import java.time.Duration;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.By;
@@ -28,13 +29,25 @@ public class Testevent extends CommonBase {
 		driver =initChromeDriver();
 		driver.get("https://rise.fairsketch.com/signin");
 	}
+//	@Test(priority=1)
+//	public void addeventsuccess(){
+//		Riseevent addeventsuce = new Riseevent(driver);
+//		addeventsuce.login();
+//		addeventsuce.menuevent();
+//		addeventsuce.addeventsuccess("event5",getCurrentDateTime(),getCurrentDateTime());
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//		AssertJUnit.assertTrue(isElementPresent(By.xpath("//span[text()=' event5']/ancestor::td[@data-date='"+getCurrentDateTime1()+"']" )));
+//	}
 	@Test(priority=1)
-	public void addeventsuccess(){
-		Riseevent addeventsuce = new Riseevent(driver);
-		addeventsuce.login();
-		addeventsuce.menuevent();
-		addeventsuce.addeventsuccess("event5",getCurrentDateTime(),getCurrentDateTime());
-		AssertJUnit.assertTrue(isElementPresent(By.xpath("//span[text()=' event5']/ancestor::td[@data-date='"+getCurrentDateTime1()+"']" )));
+	public void addeventsuccessupload(){
+		Riseevent addeventsuccessupload = new Riseevent(driver);
+		addeventsuccessupload.login();
+		addeventsuccessupload.menuevent();
+		addeventsuccessupload.addeventsuccessupload("event5",getCurrentDateTime(),getCurrentDateTime(),"C:\\Users\\ADMIN\\Desktop\\AED\\1-2.jpg");
+		pause(5000);
+		click(By.xpath("//td[@data-date='"+getCurrentDateTime1()+"']/div/div[2]/div/a/span/span[text()=' event5']"));
+		AssertJUnit.assertTrue(isElementPresent(By.xpath("//div[@class='edit-image-file mb15']")));
+		click(By.xpath("//*[@id='ajaxModal']/div/div/div[1]/button"));
 	}
 	@Test(priority=2)
 	public void deleteeventsuccess(){
@@ -54,7 +67,7 @@ public class Testevent extends CommonBase {
 	    WebElement monthButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='event-calendar']/div[1]/div[3]/div/button[1]")));
 	    monthButton.click(); 
 	    // Chờ cho phần tử có văn bản là "March 2024" xuất hiện
-	    WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='fc-toolbar-chunk'][2]//h2[text()='March 2024']")));
+	    WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='fc-toolbar-chunk'][2]//h2[text()='"+ getCurrentMonth() +"']")));
 	    // Lấy văn bản từ phần tử và so sánh với văn bản mong đợi
 	    String expectedText = getCurrentMonth();
 	    System.out.println("Chuỗi là tháng và năm hiện tại:"+ expectedText );
@@ -70,14 +83,14 @@ public class Testevent extends CommonBase {
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1000));
 	    WebElement weekButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='event-calendar']/div[1]/div[3]/div/button[2]")));
 	    weekButton.click(); 
-	    WebElement element1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='event-calendar']/div[1]/div[2]/h2[text()='Mar 17 – 23, 2024']")));
-	    String expectedText = getWeekWithSpecialFormat();
-	    String actualText= element1.getText().replaceAll("[^a-zA-Z0-9]", "");
-//	    JavascriptExecutor js = (JavascriptExecutor) driver;
-//	    String actualText = (String) js.executeScript("return arguments[0].innerText;", element1);
+	    String expectedText = getWeekWithSpecialFormat1();
+	    System.out.println(expectedText);
+	    WebElement element1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='event-calendar']/div[1]/div[2]/h2")));
+//	    String actualText= element1.getText().replaceAll("[^a-zA-Z0-9]", "");
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    String actualText = js.executeScript("return arguments[0].innerText;",element1).toString().replaceAll("\\p{Pd}", "-");
 	    System.out.println(actualText );
-//	    AssertJUnit.assertEquals(actualText, expectedText);
-//	    AssertJUnit.assertEquals(actualText, expectedText.replaceAll("[^a-zA-Z0-9]", ""));
+	    Assert.assertEquals(actualText, expectedText);
 	}
 	
 	@Test(priority=5)
