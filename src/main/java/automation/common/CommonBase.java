@@ -204,12 +204,51 @@ public class CommonBase {
 			return expected;
 		}
 	
+		public String getWeekWithSpecialFormat1() {
+			// Get calendar set to current date and time
+		    Calendar c = GregorianCalendar.getInstance();
+		    // Set the calendar to Monday of the current week
+		    c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		    
+		    // Print dates of the current week starting on Monday
+		    SimpleDateFormat df = new SimpleDateFormat("MMM d, yyyy", Locale.getDefault());
+		    String startDate = df.format(c.getTime());
+		    System.out.println("Start Date = " + startDate);
+		    // Tạo một bản sao của calendar để tính toán ngày kết thúc
+		    Calendar endCalendar = (Calendar) c.clone();
+		    endCalendar.add(Calendar.DATE, 6); // Thêm 6 ngày để tính toán ngày kết thúc
+		    String endDate = df.format(endCalendar.getTime());
+		    
+		    // Lấy tháng của ngày bắt đầu và kết thúc
+		    int startMonth = c.get(Calendar.MONTH);
+		    System.out.println("Start Mont = " + startMonth);
+		    int endMonth = endCalendar.get(Calendar.MONTH);
+		    System.out.println("end Mont = " + endMonth);
+		    String expected;
+		    if (startMonth != endMonth) {
+		    	// Nếu tháng bắt đầu khác tháng kết thúc, lấy ngày và tháng của ngày kết thúc
+//		    	String[] parts = endDate.split(" "); // Tách chuỗi bằng khoảng trắng
+//		    	String monthAndDay = parts[0] + " " + parts[1];
+		        System.out.println("Day of end Date = " + endDate.substring(0, 5));
+		        expected = new StringBuilder().append(startDate.substring(0, 6)).append(" - ")
+			            .append(endDate.substring(0, 5)).append(startDate.substring(6, 12)).toString();
+			    
+		    } else {
+		        // Cắt chuỗi endDate để chỉ lấy ra ngày
+		        System.out.println("Day of end Date = " + endDate.subSequence(4, 6));
+		        expected = new StringBuilder().append(startDate.substring(0, 6)).append(" - ")
+			            .append(endDate.subSequence(4, 6)).append(startDate.substring(6, 12)).toString();
+			   
+		    }   
+		    System.out.println("Expected weekWithSpecialFormat: " + expected);
+		    return expected;
+		}
 	public String getCurrentDateTime1() {
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		// calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH));
 		String currentdateTime1 = df.format(calendar.getTime());
-		System.out.println("Current day - month - year: " + currentdateTime1);
+		System.out.println("getCurrentDateTime1: " + currentdateTime1);
 		return currentdateTime1;
 	}
 
