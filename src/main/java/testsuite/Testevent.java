@@ -5,8 +5,11 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
 
+<<<<<<< HEAD
 import static org.testng.Assert.assertEquals;
 
+=======
+>>>>>>> bd6da0d07e999ef10c7a242641a2763557e0f620
 import java.text.Normalizer;
 import java.time.Duration;
 import java.util.List;
@@ -47,7 +50,11 @@ public class Testevent extends CommonBase {
 		Riseevent addeventsuccessupload = new Riseevent(driver);
 		addeventsuccessupload.login();
 		addeventsuccessupload.menuevent();
+<<<<<<< HEAD
 		addeventsuccessupload.addeventsuccessupload("event5",getCurrentDateTime(),getCurrentDateTime(),"C:\\Users\\ADMIN\\Desktop\\AED\\","1-2.jpg");
+=======
+		addeventsuccessupload.addeventsuccessupload("event5",getCurrentDateTime(),getCurrentDateTime(),"C:\\Users\\ADMIN\\Desktop\\AED\\1-2.jpg");
+>>>>>>> bd6da0d07e999ef10c7a242641a2763557e0f620
 		pause(5000);
 		click(By.xpath("//td[@data-date='"+getCurrentDateTime1()+"']/div/div[2]/div/a/span/span[text()=' event5']"));
 		AssertJUnit.assertTrue(isElementPresent(By.xpath("//div[@class='edit-image-file mb15']")));
