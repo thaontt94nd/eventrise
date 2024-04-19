@@ -18,6 +18,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /*
@@ -204,15 +205,79 @@ public class CommonBase {
 			return expected;
 		}
 	
+		public String getWeekWithSpecialFormat1() {
+			// Get calendar set to current date and time
+		    Calendar c = GregorianCalendar.getInstance();
+		    // Set the calendar to Monday of the current week
+		    c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		    
+		    // Print dates of the current week starting on Monday
+		    SimpleDateFormat df = new SimpleDateFormat("MMM d, yyyy", Locale.getDefault());
+		    String startDate = df.format(c.getTime());
+		    System.out.println("Start Date = " + startDate);
+		    // Tạo một bản sao của calendar để tính toán ngày kết thúc
+		    Calendar endCalendar = (Calendar) c.clone();
+		    endCalendar.add(Calendar.DATE, 6); // Thêm 6 ngày để tính toán ngày kết thúc
+		    String endDate = df.format(endCalendar.getTime());
+		    
+		    // Lấy tháng của ngày bắt đầu và kết thúc
+		    int startMonth = c.get(Calendar.MONTH);
+		    System.out.println("Start Mont = " + startMonth);
+		    int endMonth = endCalendar.get(Calendar.MONTH);
+		    System.out.println("end Mont = " + endMonth);
+		    String expected;
+		    if (startMonth != endMonth) {
+		    	// Nếu tháng bắt đầu khác tháng kết thúc, lấy ngày và tháng của ngày kết thúc
+//		    	String[] parts = endDate.split(" "); // Tách chuỗi bằng khoảng trắng
+//		    	String monthAndDay = parts[0] + " " + parts[1];
+		        System.out.println("Day of end Date = " + endDate.substring(0, 5));
+		        expected = new StringBuilder().append(startDate.substring(0, 6)).append(" - ")
+			            .append(endDate.substring(0, 5)).append(startDate.substring(6, 12)).toString();
+			    
+		    } else {
+		        // Cắt chuỗi endDate để chỉ lấy ra ngày
+		        System.out.println("Day of end Date = " + endDate.subSequence(4, 6));
+		        expected = new StringBuilder().append(startDate.substring(0, 6)).append(" - ")
+			            .append(endDate.subSequence(4, 6)).append(startDate.substring(6, 12)).toString();
+			   
+		    }   
+		    System.out.println("Expected weekWithSpecialFormat: " + expected);
+		    return expected;
+		}
 	public String getCurrentDateTime1() {
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		// calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH));
 		String currentdateTime1 = df.format(calendar.getTime());
-		System.out.println("Current day - month - year: " + currentdateTime1);
+		System.out.println("getCurrentDateTime1: " + currentdateTime1);
 		return currentdateTime1;
 	}
-
+	public String getCurrentDateTime3() {
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		// calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH));
+		String currentdateTime3 = df.format(calendar.getTime());
+		System.out.println("getCurrentDateTime3: " + currentdateTime3);
+		return currentdateTime3;
+	}
+	// 4. Lấy 1 ngày tiếp theo từ ngày hiện tại
+		public String getNext1DaysOfCurrentDateTime() {
+			Calendar calendar = Calendar.getInstance();
+			SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+			calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 1);
+			String next1Days = df.format(calendar.getTime());
+			System.out.println("Next 1 days from current day: " + next1Days);
+		 return next1Days;
+		}
+		// 4. Lấy 7 ngày tiếp theo từ ngày hiện tại
+		public String getNext7DaysOfCurrentDateTime() {
+			Calendar calendar = Calendar.getInstance();
+			SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+			calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 7);
+			String next7Days = df.format(calendar.getTime());
+			System.out.println("Next 7 days from current day: " + next7Days);
+			 return next7Days;
+		}
 	public WebDriver initChromeDriver() {
 		System.out.println("Lauching Chrome Brower");
 		ChromeOptions options = new ChromeOptions();
@@ -220,6 +285,16 @@ public class CommonBase {
 		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
 		return driver;
+	}
+	public void type1(By locator, String value) {
+		WebElement element = getElementPresentDOM(locator);
+		element.clear();
+		element.sendKeys(value);
+	}
+	
+	public void typeKeyTabs(By locator) {
+		WebElement element = getElementPresentDOM(locator);
+		element.sendKeys(Keys.TAB);
 	}
 
 	public WebDriver initfirefoxDriver() {

@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.AssertJUnit;
 
 import automation.common.CommonBase;
 
@@ -52,7 +54,7 @@ public class Riseevent extends CommonBase {
     	type(enddate, getCurrentDateTime());
     	click(btnsave);
     }
-    public void addeventsuccessupload(String title, String startdate1,String enddate1, String filePath) {
+    public void addeventsuccessupload(String title, String startdate1,String enddate1, String filePath, String tenfile) {
     	click(addevent);
     	type(txttitle, title);
         type(startdate, getCurrentDateTime());
@@ -65,17 +67,18 @@ public class Riseevent extends CommonBase {
         
         // Gửi đường dẫn của tệp tin đến input file
         WebElement uploadInput = driver.findElement(By.xpath("//input[@type='file']"));
-        uploadInput.sendKeys(filePath);
-        String xpath = "//img[@alt='1-2.jpg']";
-        
-        // Kiểm tra sự xuất hiện của phần tử
-        WebElement element4 = null;
-        try {
-            element4 = driver.findElement(By.xpath(xpath));
-            System.out.println("Phần tử được tìm thấy trên trang web.");
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            System.out.println("Phần tử không được tìm thấy trên trang web.");
-        }
+        uploadInput.sendKeys(filePath+tenfile);
+        Assert.assertTrue(isElementPresent(By.xpath("//img[@alt='" + tenfile + "']")));
+//        String xpath = "//img[@alt='1-2.jpg']";
+//        
+//        // Kiểm tra sự xuất hiện của phần tử
+//        WebElement element4 = null;
+//        try {
+//            element4 = driver.findElement(By.xpath(xpath));
+//            System.out.println("Phần tử được tìm thấy trên trang web.");
+//        } catch (org.openqa.selenium.NoSuchElementException e) {
+//            System.out.println("Phần tử không được tìm thấy trên trang web.");
+//        }
         pause(3000);
         click(btnsave); 
     }

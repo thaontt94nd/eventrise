@@ -5,8 +5,12 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
 
+import static org.testng.Assert.assertEquals;
+
 import java.text.Normalizer;
 import java.time.Duration;
+import java.util.List;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -43,7 +47,7 @@ public class Testevent extends CommonBase {
 		Riseevent addeventsuccessupload = new Riseevent(driver);
 		addeventsuccessupload.login();
 		addeventsuccessupload.menuevent();
-		addeventsuccessupload.addeventsuccessupload("event5",getCurrentDateTime(),getCurrentDateTime(),"C:\\Users\\ADMIN\\Desktop\\AED\\1-2.jpg");
+		addeventsuccessupload.addeventsuccessupload("event5",getCurrentDateTime(),getCurrentDateTime(),"C:\\Users\\ADMIN\\Desktop\\AED\\","1-2.jpg");
 		pause(5000);
 		click(By.xpath("//td[@data-date='"+getCurrentDateTime1()+"']/div/div[2]/div/a/span/span[text()=' event5']"));
 		AssertJUnit.assertTrue(isElementPresent(By.xpath("//div[@class='edit-image-file mb15']")));
@@ -107,6 +111,31 @@ public class Testevent extends CommonBase {
 	    System.out.println(actualText );
 	    AssertJUnit.assertEquals(actualText, expectedText);
 	}
+		 private void assertList(String value) {
+			 List < WebElement > list = driver.findElements(By.xpath("//table[@id='project-table']//tbody/tr/child::td[6]/a"));
+			 for (WebElement item:list) {
+				 String actual=item.getText();
+				 assertEquals(actual,value);
+			 }
+		 }
+		 @Test
+		 public void filterTask() throws InterruptedException {
+			 String value ="Data Analysis and Insights";
+			 Riseevent Textday1 = new Riseevent(driver);
+			 Textday1.login();
+			 click(By.xpath("//span[text()='Tasks']"));
+			 click(By.xpath("//button[@class='btn btn-default show-filter-form-button']"));
+
+			 click(By.xpath("//div[@id='s2id_autogen5']"));
+			 type(By.xpath("(//input[@type='text' and @autocomplete='off'])[8]"), "Project");
+			 typeKeyTabs(By.xpath("(//input[@type='text' and @autocomplete='off'])[8]"));
+
+			 click(By.xpath("//div[@id='s2id_autogen7']"));
+			 type(By.xpath("(//input[@type='text' and @autocomplete='off'])[8]"), value);
+			 typeKeyTabs(By.xpath("(//input[@type='text' and @autocomplete='off'])[8]"));
+			 pause(3000);
+			 assertList(value);
+		 }
 	
 	@AfterTest
 	public void closechromeDriver() {
