@@ -147,8 +147,6 @@ public class Testtask1<SimpleDateFormat> extends CommonBase {
   //Status
     public void status() {
         click(status);
-        click(Review);
-        
-        
+        click(Review);       
     }
 }

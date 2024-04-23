@@ -2,25 +2,10 @@
 
 <suite name="Suite All" verbose="1">
 
-    <test name="Regression Test All class on firefox">
-        <parameter name="browser" value="firefox"></parameter>
-        <classes>
-            <class name="testsuite.windowspop_ExplicitWai" />
-        </classes>
-    </test>
-
-    <test name="Regression Test All class on chrome">
+    <test name="Test task">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="testsuite.windowspop_ExplicitWai" />           
+            <class name="testsuite.Testtask" />           
         </classes>
     </test>
-    
-    <test name="Regression Test All class on edge">
-        <parameter name="browser" value="edge"></parameter>
-        <classes>
-            <class name="testsuite.windowspop_ExplicitWai" />           
-        </classes>
-    </test>
-
 </suite>
