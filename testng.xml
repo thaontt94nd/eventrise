@@ -5,7 +5,7 @@
     <test name="Test task">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="testsuite.Testtask" />           
+            <class name="testsuite.Uploadfile" />           
         </classes>
     </test>
 </suite>
